@@ -165,3 +165,7 @@ console.log(longestSubarrayTwoPointer(arr3, K3)); // Output: 2
 | Two Pointer (Sliding) | `O(n)`          | `O(1)`           | Best for non-negative arrays |
 
 **Note**: The two-pointer method works efficiently only if the array contains non-negative integers.
+
+## Resources
+
+[Video Link](https://www.youtube.com/watch?v=frf7qxiN2qU&ab_channel=takeUforward)
