@@ -55,9 +55,9 @@ function removeNthFromEnd(head, n) {
 
 ### Steps:
 
-1. Use two pointers, `first` and `second`. Move `first` pointer `n+1` steps ahead.
-2. Move both pointers one step at a time until `first` reaches the end of the list.
-3. The `second` pointer will be at the node before the `nth` node from the end. Remove the next node.
+1. Use two pointers, `fast` and `slow`. Move `fast` pointer `n` steps ahead.
+2. Move both pointers one step at a time until `fast` reaches the end of the list.
+3. The `slow` pointer will be at the node before the `nth` node from the end. Remove the next node.
 
 ### Code (One Pass)
 
@@ -65,23 +65,21 @@ function removeNthFromEnd(head, n) {
 function removeNthFromEnd(head, n) {
   let dummy = new ListNode(0);
   dummy.next = head;
-  let first = dummy;
-  let second = dummy;
-
-  // Step 1: Move first n+1 steps ahead
-  for (let i = 1; i <= n + 1; i++) {
-    first = first.next;
+  let slow = dummy;
+  let fast = dummy;
+  for (let i = 0; i < n; i++) {
+    if (fast.next === null) {
+      // If `n` is greater than the length of the list, return the head (invalid case)
+      return head;
+    }
+    fast = fast.next;
   }
 
-  // Step 2: Move both pointers until first reaches the end
-  while (first !== null) {
-    first = first.next;
-    second = second.next;
+  while (fast.next !== null) {
+    slow = slow.next;
+    fast = fast.next;
   }
-
-  // Step 3: Remove the nth node from the end
-  second.next = second.next.next;
-
+  slow.next = slow.next ? slow.next.next : null;
   return dummy.next;
 }
 ```
